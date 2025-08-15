@@ -1,0 +1,47 @@
+{
+  "$id": "https://example.com/mcp_v1.json",
+  "title": "MCP v1",
+  "type": "object",
+  "required": ["mcp_version","timestamp","world","agents","query"],
+  "properties": {
+    "mcp_version": {"type":"string","const":"1.0"},
+    "timestamp": {"type":"string","format":"date-time"},
+    "world": {
+      "type":"object",
+      "required":["id","time","global_facts"],
+      "properties":{
+        "id":{"type":"string"},
+        "time":{"type":"integer"},
+        "locations":{"type":"array","items":{"type":"object"}},
+        "global_facts":{"type":"array","items":{"type":"string"}}
+      }
+    },
+    "agents": {
+      "type":"array",
+      "items":{
+        "type":"object",
+        "required":["id","type","role","state"],
+        "properties":{
+          "id":{"type":"string"},
+          "type":{"type":"string"},
+          "role":{"type":"string"},
+          "state":{"type":"object"},
+          "memory_refs":{"type":"array","items":{"type":"string"}}
+        }
+      }
+    },
+    "event_log":{"type":"array","items":{"type":"object"}},
+    "query":{
+      "type":"object",
+      "required":["intent"],
+      "properties":{
+        "intent":{"type":"string"},
+        "actor_id":{"type":["string","null"]},
+        "params":{"type":"object"}
+      }
+    },
+    "short_term_context":{"type":"string"},
+    "memory_fetches":{"type":"array","items":{"type":"object"}}
+  },
+  "additionalProperties": false
+}

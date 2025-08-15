@@ -1,0 +1,27 @@
+{
+  "$id":"https://example.com/agent_action.json",
+  "type":"object",
+  "required":["mcp_version","timestamp","agent_id","append_events"],
+  "properties":{
+    "mcp_version":{"type":"string","const":"1.0"},
+    "timestamp":{"type":"string","format":"date-time"},
+    "agent_id":{"type":"string"},
+    "agent_type":{"type":"string"},
+    "append_events":{
+      "type":"array",
+      "items":{
+        "type":"object",
+        "required":["id","actor_id","action","desc"],
+        "properties":{
+          "id":{"type":"string"},
+          "actor_id":{"type":"string"},
+          "action":{"type":"object","required":["type"], "properties":{"type":{"type":"string"},"payload":{}}},
+          "desc":{"type":"string"},
+          "state_writes":{"type":"object"}
+        }
+      }
+    },
+    "state_updates":{"type":"object"}
+  },
+  "additionalProperties": false
+}
